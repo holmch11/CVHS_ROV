@@ -1,0 +1,33 @@
+# CVHS ROV Setup from New Card
+sudo apt update
+sudo apt upgrade
+rm -r Bookshelf/ Documents/ Music/ Pictures/ Public/ Templates/
+sudo nano .bashrc # uncomment ll and la
+sudo raspi-config
+#	Enable vnc, i2c, and cooling fan on 14
+sudo reboot
+ssh keygen #add rsa_public to github account....
+git config --global user.name "CVHS_SUB"
+git config --global user.email "holmch@oregonstate.edu"
+git clone git@github.com:holmch11/CVHS_SUB.git
+# Add config to ~/.ssh
+ssh-copy-id -i /home/rov/.ssh/id_rsa.pub control@192.168.2.2
+sudo apt install cmake nginx
+sudo apt install arduino
+sudo apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio
+sudo apt install gstreamer1.0-libcamera
+sudo apt update
+sudo apt upgrade
+sudo nmcli c mod 'Wired connection 1' ipv4.addresses 192.168.2.3/24 ipv4.method manual
+sudo nmcli con mod 'Wired connection 1' ipv4.gateway 192.168.2.10 # for Nereus ONLY input router settings
+sudo nmcli con mod 'Wired connection 1' ipv4.dns "192.168.2.10" # for Nereus ONLY input router settings
+sudo nmcli c down 'Wired connection 1' && sudo nmcli c up 'Wired connection 1'
+sudo apt install python3.11-venv
+cd ~/CVHS_CONTROL/Comms python -m venv env --system-site-packages
+source env/bin/activate
+cd ~
+pip3 install --upgrade adafruit-python-shell
+wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+sudo -E env PATH=$PATH python3 raspi-blinka.py
+sudo apt install python3-evdev
+sudo apt install npm

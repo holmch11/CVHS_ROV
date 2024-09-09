@@ -1,0 +1,12 @@
+[Unit]
+Description= Java Script Process Checker
+After=network.target
+
+[Service]
+ExecStartPre=/bin/sleep 90
+ExecStart=/usr/bin/node /home/rov/CVHS_SUB/Comms/website/server.js
+Restart=alway
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

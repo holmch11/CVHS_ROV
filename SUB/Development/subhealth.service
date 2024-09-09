@@ -1,0 +1,12 @@
+[Unit]
+Description=CVHS ROV Internal pressure humidity data handler
+After=network.target
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 30
+ExecStart=/home/rov/CVHS_SUB/Comms/bme680_send
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

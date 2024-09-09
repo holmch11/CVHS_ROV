@@ -1,0 +1,11 @@
+[Unit]
+Description=CVHS ROV External pressure data handler
+After=network.target
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 15
+ExecStart=/usr/bin/python3 /home/rov/CVHS_SUB/Comms/sensors/ms5837-python/extPressure_send.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

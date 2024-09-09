@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=ROV_Control
+Exec=~/CVHS_CONTROL/act/Start
+Icon=~/CVHS_CONTROL/act/OSU_vertical_1C_W.png
+Type=Application

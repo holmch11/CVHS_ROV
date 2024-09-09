@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# This receives a mjpeg stream of the picamera 3 module over gstreamer on port 5600
+#  
+# Version History
+#**********************************************************************#
+# 2023-12-05 CEH Initial Version Chris Holm holmch@oregonstate.edu	
+# 
+#
+#************************************************************************
+
+gst-launch-1.0 tcpclientsrc host=192.168.2.3 port=5600 ! multipartdemux ! jpegdec ! videoconvert ! autovideosink & sleep 2 && xdotool search --class "GstWindow" windowmove 0 0

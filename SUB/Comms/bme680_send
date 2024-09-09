@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# bme680_send.sh
+#
+# Activate the python Virtual Environment required by BME680 script and run it
+#
+# Version History
+#**********************************************************************#
+# 2023-01-05 CEH Initial Version Chris Holm holmch@oregonstate.edu
+#
+#
+#**********************************************************************#
+
+source /home/rov/CVHS_SUB/Comms/env/bin/activate
+sleep 1
+python3 /home/rov/CVHS_SUB/Comms/sensors/intHealth_send.py
+sleep 1
+deactivate

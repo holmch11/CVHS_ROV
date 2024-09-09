@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time IMU Data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <h1>Real-time IMU Data</h1>
+
+    <!-- Display the Matplotlib plot using an <img> tag -->
+    <img id="plotImage" alt="IMU Data Plot">
+
+    <!-- Your existing content here -->
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        // Function to update the plot image
+        function updatePlot(data) {
+            var img = document.getElementById('plotImage');
+            img.src = 'data:image/png;base64,' + data.plot_data;
+        }
+
+        // Request initial plot update
+        socket.emit('request_plot_update');
+
+        // Listen for real-time plot updates
+        socket.on('update_plot', function(data) {
+            updatePlot(data);
+        });
+
+        // WebSocket connection for additional data if needed
+        var ws = new WebSocket('ws://' + window.location.host + '/ws');
+
+        ws.onopen = function (event) {
+            console.log('WebSocket connection opened:', event);
+        };
+
+        ws.onmessage = function (event) {
+            console.log('Message received from WebSocket:', event.data);
+            // Handle the received data as needed
+        };
+    </script>
+</body>
+</html>

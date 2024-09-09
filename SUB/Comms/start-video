@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# This starts a mjpeg stream of the picamera 3 module over gstreamer on port 5600
+#  
+# Version History
+#**********************************************************************#
+# 2023-12-05 CEH Initial Version Chris Holm holmch@oregonstate.edu	
+# 
+#
+#**********************************************************************#
+
+gst-launch-1.0 libcamerasrc ! videoflip method=rotate-180 ! video/x-raw,colorimetry=bt709,format=NV12,width=1280,height=720,framerate=30/1, !  jpegenc ! multipartmux ! tcpserversink host=192.168.2.3 port=5600

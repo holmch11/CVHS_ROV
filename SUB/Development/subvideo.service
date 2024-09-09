@@ -1,0 +1,12 @@
+[Unit]
+Description=CVHS ROV Camera handler
+After=network.target
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 45
+ExecStart=/home/rov/CVHS_SUB/Comms/start-video
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

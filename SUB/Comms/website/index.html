@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVHS ROV</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        #processStatusList {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CVHS ROV is Alive</h1>
+    </header>
+
+    <section>
+        <p>
+            ROV has multiple Communication Sockets running:
+            <ul>
+                <li>Video on 5600</li>
+                <li>IMU on 5610</li>
+                <li>External Pressure on 5620</li>
+                <li>Internal Health on 5630</li>
+                <li>Control Enable on 5640</li>
+                <li>Control Handling 5800</li>
+            </ul>
+        </p>
+    </section>
+
+   <section>
+    <h2>What Is Running</h2>
+    <!-- Add this div to your index.html file -->
+<div id="runningListContainer">
+    <!-- Running list will be displayed here -->
+</div>
+
+<script>
+    // Function to update the running list on the HTML page
+    async function updateRunningList() {
+        const response = await fetch('/get-running-list');
+        const result = await response.json();
+        const runningList = result.runningList;
+        const runningListContainer = document.getElementById('runningListContainer');
+
+        runningList.forEach(item => {
+            const listItem = document.createElement('p');
+            listItem.textContent = item;
+            runningListContainer.appendChild(listItem);
+        });
+    }
+
+    // Update the running list on page load
+    updateRunningList();
+</script>

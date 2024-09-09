@@ -1,0 +1,23 @@
+## Setting up a new Pi For Control Side
+
+sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio
+sudo apt-get install jupyter
+sudo apt-get install arduino
+sudo apt-get update
+sudo apt-get upgrade
+sudo rasp-config # Add VNC and Fan Set locale
+sudo apt install python3-evdev
+sudo nmcli c show
+sudo nmcli c mod 'Wired connection 1' ipv4.addresses 192.168.2.2/24 ipv4.method manual
+sudo nmcli con mod 'Wired connection 1' ipv4.gateway 192.168.2.10 # for Nereus ONLY input router settings
+sudo nmcli con mod 'Wired connection 1' ipv4.dns "192.168.2.10" # for Nereus ONLY input router settings
+sudo nmcli c down 'Wired connection 1' && sudo nmcli c up 'Wired connection 1'
+## Only If you want to undo this.... sudo nmcli con modify 'Wired connection 1' ipv4.method auto
+cd | sudo nano .bashrc # paste the following:
+sudo nano apt install fortune cowsay
+#fortune | cowsay -pn
+#echo "Welcome to the CVHS SUB Control video is on port 5600, Controls on 5800, and Data on 80"
+sudo apt install python3-opencv-apps
+sudo apt install pyhton3-opencv
+sudo apt install xterm
+sudo apt install xdotool

@@ -1,0 +1,22 @@
+#!/bin/bash
+# This starts all CVHS ROV Control Scripts with a daily logfile
+# The logfile for this script can be seen in the journal
+# Christopher Holm 2024 holmch@oregonstate.edu
+# Version History
+#**********************************************************************#
+# 2024/01/11 CEH Initial Version
+#
+#
+#
+#**********************************************************************#
+filedate=`date -u +%Y%m%d`
+
+xterm -geometry 200x30+0+0 -e "~/CVHS_CONTROL/act/video" &
+sleep 1
+xterm -geometry 50x50+1500+100 -e "python3 ~/CVHS_CONTROL/act/activate.py" &
+sleep 1
+xterm -geometry 125x10+0+970 -e "python3 ~/CVHS_CONTROL/sensors/intPressure.py" &
+sleep 1
+xterm -geometry 125x10+0+1130 -e "python3 ~/CVHS_CONTROL/sensors/extPressure.py" &
+sleep 1
+xterm -geometry 125x10+0+820 -e "python3 ~/CVHS_CONTROL/sensors/imu_plot.py" &

@@ -1,0 +1,14 @@
+[Unit]
+Description=CVHS ROV Controller Handler
+After=network.target
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 5
+ExecStart=/usr/bin/python3 /home/rov/CVHS_SUB/Comms/Controller_enable.py
+User=rov
+Group=rov
+WorkingDirectory=/home/rov/CVHS_SUB/Comms/
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
